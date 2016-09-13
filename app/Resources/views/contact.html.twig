@@ -1,0 +1,15 @@
+{% extends 'layout.html.twig' %}
+
+{% block content %}
+    <h1>Contact us!</h1>
+    {{ form_start(contact_form) }}
+    {{ form_errors(contact_form) }}
+    {{ form_row(contact_form.subject) }}
+    {{ form_row(contact_form.content) }}
+    {{ form_row(contact_form.email) }}
+    <input type="submit" name="Send">
+    {{ form_end(contact_form) }}
+{% endblock %}
+
+{% block title %}Contact{% endblock %}
+

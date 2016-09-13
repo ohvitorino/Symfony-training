@@ -7,3 +7,24 @@ services:
 #    service_name:
 #        class: AppBundle\Directory\ClassName
 #        arguments: ["@another_service_name", "plain_value", "%parameter_name%"]
+  app.service.test:
+    alias: 'app.service.test2'
+
+  app.service.test2:
+    class: AppBundle\Service\ServiceTest2
+    arguments: ['foobar2', '@router']
+
+  app.notifier.contact_with_logger:
+    class: AppBundle\Notifier\ContactNotifier
+    arguments: ['@doctrine']
+    calls:
+      - ['setLogger', ['@logger']]
+    public: false
+
+  app.notifier.contact_without_logger:
+    class: AppBundle\Notifier\ContactNotifier
+    arguments: ['@doctrine']
+    public: false
+
+  app.notifier.contact:
+    alias: 'app.notifier.contact_with_logger'

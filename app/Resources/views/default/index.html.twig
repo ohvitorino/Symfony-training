@@ -4,6 +4,13 @@
     <h1>Hello Symfony World!</h1>
 
     <p>and hello {{ name }}</p>
+
+    {% if app.user %}
+        Logged in as {{ app.user.username }}
+        <a href="{{ path('app_logout') }}">logout</a>
+    {% else %}
+        <a href="{{ path('app_user_login') }}">login</a>
+    {% endif %}
 {% endblock %}
 
 {% block stylesheets %}

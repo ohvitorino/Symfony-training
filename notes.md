@@ -27,6 +27,17 @@ Short syntax for blocks `{% block title 'Hangman Game' %}`.
 
 Embed twig tag (`embed`) it mixes include and extend.
 
+## Security
+
+There is a role interface that can be used for configuring roles, 
+instead of using string for role names, for ex: `ROLE_USER`
+
+`_switch_user=hhamon` is a special GET parameter used to impersonate another user
+
+## Others
+
+[3v4l.org](3v4l.org)
+
 # Deployment notes
 
 - [Capistrano](http://capistranorb.cmo) (Ruby)
@@ -38,4 +49,3 @@ recommended for storing the passwords.
 
 # Questions
 
-How to test database inserts

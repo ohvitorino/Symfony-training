@@ -19,8 +19,6 @@ class UserController extends Controller
 {
     /**
      * @Route("/register", name="app_user_register")
-     * @param Request $request
-     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function registerAction(Request $request)
     {

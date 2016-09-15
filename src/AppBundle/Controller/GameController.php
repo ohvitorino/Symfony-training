@@ -9,12 +9,17 @@
 namespace AppBundle\Controller;
 
 
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Cache;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 /**
  *
  * @Route("/game")
+ * @Cache(maxage=120)
+ *
+ * @Security("has_role('ROLE_USER')")
  *
  * Class GameController
  * @package AppBundle\Controller
@@ -23,6 +28,8 @@ class GameController extends Controller
 {
     /**
      * @Route("/", name="game_homepage")
+     *
+     * @Cache(smaxage=30)
      */
     public function homepageAction()
     {
@@ -49,6 +56,17 @@ class GameController extends Controller
     public function failedAction()
     {
         return $this->render('game/failed.html.twig');
+    }
+
+    /**
+     * @Cache(smaxage=2)
+     */
+    public function lastPlayersAction()
+    {
+        $players = ['Pierre', 'Jacques', 'Jan', 'Lies', 'Maria'];
+        return $this->render('game/fragments/last_players.html.twig', [
+            'players' => array_rand(array_flip($players), 3)
+        ]);
     }
 
     /**

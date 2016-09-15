@@ -7,6 +7,7 @@ use AppBundle\Form\ContactType;
 use DateTime;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Form\FormError;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -69,14 +70,29 @@ class DefaultController extends Controller
 
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $this->get('app.notifier.contact')->notify($contact);
+        if ($form->isSubmitted()) {
+            if (!$this->isGranted('ROLE_USER') && !empty($form->get('email')->getData())) {
+                $error = new FormError('You should be registred to fill in the email field');
+                $form->addError($error);
+            }
 
-            return $this->redirectToRoute('homepage');
+            if ($form->isValid()) {
+                $this->get('app.notifier.contact')->notify($contact);
+
+                return $this->redirectToRoute('homepage');
+            }
         }
 
         return $this->render('contact.html.twig', [
             'contact_form' => $form->createView()
         ]);
+    }
+
+    /**
+     * @Route("/admin/blabla")
+     */
+    public function someAdminAction()
+    {
+        return new Response('Welcome admin!');
     }
 }

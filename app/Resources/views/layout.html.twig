@@ -52,13 +52,11 @@
                 </ul>
             </div>
             <h3>Last players</h3>
-            <ul>
-                <li>user 1</li>
-                <li>user 2</li>
-                <li>user 3</li>
-                <li>user 4</li>
-                <li>user 5</li>
-            </ul>
+            {{ render_esi(controller('AppBundle:Game:lastPlayers')) }}
+
+            <p>
+                {{ 'now'|date('H:i:s') }}
+            </p>
         </div>
         <br class="clearfix"/>
     </div>

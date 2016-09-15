@@ -1,0 +1,9 @@
+{% extends 'layout.html.twig' %}
+
+{% block content %}
+    <ul>
+        {% for contact in contacts %}
+            <li>contact.content <a href="{{ path('app_contacts_edit', {id : contact.id}) }}">edit</a></li>
+        {% endfor %}
+    </ul>
+{% endblock %}

@@ -44,3 +44,8 @@
         </p>
     </form>
 {% endblock %}
+
+{% block last_players %}
+    <h3>Last players</h3>
+    {{ render_esi(controller('AppBundle:Game:lastPlayers')) }}
+{% endblock %}

@@ -57,7 +57,7 @@ class ContactsController extends Controller
         }
 
         return $this->render('contacts/edit.html.twig', [
-            'edit_form' => $form
+            'edit_form' => $form->createView()
         ]);
     }
 

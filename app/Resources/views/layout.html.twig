@@ -51,8 +51,7 @@
 
                 </ul>
             </div>
-            <h3>Last players</h3>
-            {{ render_esi(controller('AppBundle:Game:lastPlayers')) }}
+            {% block last_players %}{% endblock %}
 
             <p>
                 {{ 'now'|date('H:i:s') }}
